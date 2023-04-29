@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminCourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +27,20 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::fallback(function() {
         return view('pages/utility/404');
+        // Route::controller(RoleController::class)->groub(function(){
+        //     Route::get('/roles', 'index');
+        // });
     });    
 });
+
+Route::resource('roles', RoleController::class);
+
+
+Route::get('/back-admin/course/list-course', [AdminCourseController::class, 'index']);
+// Route::get('/back-admin/course/add-course', [AdminCourseController::class, 'add']);
+Route::post('/back-admin/course/store-course', [AdminCourseController::class, 'store']);
+Route::post('/back-admin/course/{id}/edit-course', [AdminCourseController::class, 'edit']);
+Route::put('/back-admin/course/{id}/update-course', [AdminCourseController::class, 'update']);
+Route::delete('/back-admin/course/{id}/destroy-course', [AdminCourseController::class, 'destroy']);
+
+Route::get('/back-admin/course/add-course', [AdminCourseController::class, 'create']);

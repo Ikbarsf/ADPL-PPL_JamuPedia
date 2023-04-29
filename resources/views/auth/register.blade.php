@@ -5,17 +5,25 @@
         @csrf
         <div class="space-y-4">
             <div>
-                <x-jet-label for="email">{{ __('Email') }} <span class="text-rose-500">*</span></x-jet-label>
+                <x-jet-label for="email">{{ __('Email') }} </x-jet-label>
                 <x-jet-input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" />
             </div>
 
             <div>
-                <x-jet-label for="name">{{ __('Nama') }} <span class="text-rose-500">*</span></x-jet-label>
+                <x-jet-label for="name">{{ __('Nama') }} </x-jet-label>
                 <x-jet-input id="name" type="text" name="name" :value="old('name')" required />
             </div>
 
+            <div class=' mb-4 flex flex-col'>
+                <x-jet-label htmlFor='role' class='ml-1'>Sebagai</x-jet-label>
+                <select name="role" id="role">
+                    <option value="mitra">Mitra</option>
+                    <option value="customer">Customer</option>
+                </select>
+            </div>
+
             <div>
-                <x-jet-label for="alamat">{{ __('Alamat') }} <span class="text-rose-500">*</span></x-jet-label>
+                <x-jet-label for="alamat">{{ __('Alamat') }} </x-jet-label>
                 <x-jet-input id="alamat" type="text" name="alamat" :value="old('alamat')" required />
             </div>
 

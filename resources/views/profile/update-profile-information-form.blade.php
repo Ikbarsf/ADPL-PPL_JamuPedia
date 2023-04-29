@@ -65,7 +65,17 @@
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
+
+        
+        <!-- Alamat -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="alamat" value="{{ __('Alamat') }}" />
+            <x-jet-input id="alamat" type="text" class="mt-1 block w-full" wire:model.defer="state.alamat" />
+            <x-jet-input-error for="alamat" class="mt-2" />
+        </div>
     </x-slot>
+
+
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
