@@ -5,6 +5,10 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminCourseController;
+use App\Http\Controllers\CustomerEnrollController;
+use App\Http\Controllers\CustomerDashboardController;
+use App\Http\Controllers\CustomerListCourseController;
+use App\Http\Controllers\CustomerTransaksiCourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,17 +34,39 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Route::controller(RoleController::class)->groub(function(){
         //     Route::get('/roles', 'index');
         // });
-    });    
+    });
 });
 
 Route::resource('roles', RoleController::class);
 
-
+// Admin
 Route::get('/back-admin/course/list-course', [AdminCourseController::class, 'index']);
-// Route::get('/back-admin/course/add-course', [AdminCourseController::class, 'add']);
+Route::get('/back-admin/course/add-course', [AdminCourseController::class, 'add']);
 Route::post('/back-admin/course/store-course', [AdminCourseController::class, 'store']);
 Route::post('/back-admin/course/{id}/edit-course', [AdminCourseController::class, 'edit']);
 Route::put('/back-admin/course/{id}/update-course', [AdminCourseController::class, 'update']);
 Route::delete('/back-admin/course/{id}/destroy-course', [AdminCourseController::class, 'destroy']);
+Route::get('/back-admin/course/detail-peserta/{id}', [AdminCourseController::class, 'cek_peserta']);
 
-Route::get('/back-admin/course/add-course', [AdminCourseController::class, 'create']);
+
+
+// Customer
+Route::get('/back-customer/dashboard', [CustomerDashboardController::class, 'index']);
+
+Route::get('/back-customer/course/list-course', [CustomerListCourseController::class, 'index']);
+Route::get('/back-customer/my-course/paid-course', [CustomerListCourseController::class, 'myCourse']);
+Route::get('/back-customer/my-course/{slug}/persiapan-course', [CustomerListCourseController::class, 'myCourseDetail']);
+
+Route::get('/back-customer/my-course/{slug}/rating-feedback', [CustomerListCourseController::class, 'rateCourse']);
+Route::post('/back-customer/my-course/{slug}/rating-feedback/send', [CustomerListCourseController::class, 'rateCourseSend']);
+Route::get('/back-customer/my-course/{slugCourse}/{slugModule}/quiz', [CustomerListCourseController::class, 'quiz']);
+Route::post('/back-customer/my-course/quiz-store', [CustomerListCourseController::class, 'quizStore']);
+Route::get('/back-customer/my-course/{slugCourse}/{slugModule}/{slugContent}', [CustomerListCourseController::class, 'myCourseDetails']);
+Route::post('/back-customer/my-course/{slugCourse}/{slugModule}/{slugContent}/mark-done', [CustomerListCourseController::class, 'markAsDone']);
+Route::post('/back-customer/my-course/{slugCourse}/{slugModule}/{slugContent}/assignment', [CustomerListCourseController::class, 'uploadAssigment']);
+
+Route::post('/back-customer/enroll/enroll-course/{id}', [CustomerEnrollController::class, 'store']);
+
+Route::get('/back-customer/transaksi/transaksi-course', [CustomerTransaksiCourseController::class, 'index']);
+
+

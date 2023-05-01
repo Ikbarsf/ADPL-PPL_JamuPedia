@@ -26,7 +26,7 @@
                     <h3 class="fw-bolder m-0">Edit Data Course</h3>
                 </div>
             </div>
-            <div id="kt_account_settings_profile_details" class="collapse show">
+            <div id="kt_account_settings_profile_details">
                 <form id="kt_account_profile_details_form" class="form" method="POST" action="{{url('/back-admin/course/'.$getCourseDetail->id.'/update-course')}}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
@@ -43,16 +43,17 @@
                             </div>
                         </div>
                         <div class="row mb-6">
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Deskripsi</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Harga</label>
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="description" class="form-control form-control-lg form-control-solid @error('description') is-invalid @enderror" placeholder="Lorem ipsum dolor" value="{{old('description', $getCourseDetail->description)}}"/>
-                                @error('description')
+                                <input type="number" name="harga" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 @error('harga') is-invalid @enderror" placeholder="Harga" value="{{old('harga', $getCourseDetail->harga)}}" />
+                                @error('harga')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>&nbsp; &nbsp; &nbsp;{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
+
                         <div class="row mb-6">
                             <label class="col-lg-4 col-form-label fw-bold fs-6">Thumbnail Gambar</label>
                             <div class="col-lg-8">
@@ -82,26 +83,6 @@
                                         <strong>&nbsp; &nbsp; &nbsp;{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-6">
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Kategori Course</label>
-                            <div class="col-lg-8 fv-row">
-                                <select name="category" aria-label="Select a Timezone" data-control="select2" class="form-select form-select-solid form-select-lg">
-                                    @foreach ($getcCategory as $item)
-                                    <option value="{{$item->id}}" @if ($getCourseDetail->category_id == $item->id) selected @endif>{{$item->category_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-6">
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Mentor</label>
-                            <div class="col-lg-8 fv-row">
-                                <select name="mentor" aria-label="Select a Timezone" data-control="select2" class="form-select form-select-solid form-select-lg">
-                                    @foreach ($getMentor as $item)
-                                    <option value="{{$item->id}}" @if ($getCourseDetail->user_id == $item->id) selected @endif>{{$item->name}}</option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                     </div>

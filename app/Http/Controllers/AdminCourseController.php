@@ -12,32 +12,36 @@ use Illuminate\Support\Facades\DB;
 
 class AdminCourseController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware(['role:admin']);
-    // }
+    public function __construct()
+    {
+        $this->middleware(['role:admin']);
+    }
 
     private $param;
     public function index()
     {
-        $course = Course::all();
-        return view('admin.pages.course.list', [
-            'course' => $course
-        ]);
+        try {
+            $this->param['getCourse'] = \DB::table('courses')
+                                        ->select('courses.*')
+                                        ->get();
+            $this->param['getcCategory'] = CourseCategory::all();
+
+            return view('admin.pages.course.list', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
     }
-    
-    public function create()
-    {
-        return view('admin.pages.course.add');
-    }
+
+
 
     public function add()
     {
         try {
             $this->param['getMentor'] = User::whereHas('roles', function($thisRole){
-                $thisRole->where('name', 'Mentor');
+                $thisRole->where('name', 'admin');
             })->get();
-            $this->param['getcCategory'] = CourseCategory::all();
 
             return view('admin.pages.course.add', $this->param);
         } catch (\Exception $e) {
@@ -46,35 +50,34 @@ class AdminCourseController extends Controller
             return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
         }
     }
-    
+
     public function store(Request $request)
     {
-        $this->validate($request, 
+        $this->validate($request,
             [
                 'course_name' => 'required|min:4',
                 'harga' => 'required|min:4',
-                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
                 'thumbnail_video' => 'required|min:4',
             ],
             [
-                'required' => 'kolom ini harus diisi.',
+                'required' => ':attribute harus diisi.',
                 'course_name.min' => 'Minimal panjang karakter 4.',
-                'description.min' => 'Minimal panjang karakter 4.',
                 'thumbnail_video.min' => 'Minimal panjang karakter 4.',
             ],
             [
                 'course_name' => 'Nama Course',
-                'description' => 'Deskripsi',
+                'harga' => 'Harga',
                 'thumbnail_video' => 'Thumbnail Video',
             ],
         );
 
         try {
             $date = date('H-i-s');
-            $random = Str::random(5);
+            $random = \Str::random(5);
 
             $course = new Course();
             $course->course_name = $request->course_name;
+            $course->harga = $request->harga;
 
             if ($request->file('avatar')) {
                 $request->file('avatar')->move('image/upload/course/thumbnail', $date.$random.$request->file('avatar')->getClientOriginalName());
@@ -84,12 +87,10 @@ class AdminCourseController extends Controller
             }
 
             $course->thumbnail_video = $request->thumbnail_video;
-            $course->category_id = $request->category;
-            $course->slug = Str::slug($request->course_name);
-            $course->user_id = $request->mentor;
+            $course->slug = \Str::slug($request->course_name);
             $course->save();
 
-            return redirect('/back-admin/course/add-course')->withStatus('Berhasil menambah data.');
+            return redirect('/back-admin/course/list-course')->withStatus('Berhasil menambah data.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -102,9 +103,8 @@ class AdminCourseController extends Controller
         try {
             $this->param['getCourseDetail'] = Course::find($id);
             $this->param['getMentor'] = User::whereHas('roles', function($thisRole){
-                $thisRole->where('name', 'Mentor');
+                $thisRole->where('name', 'admin');
             })->get();
-            $this->param['getcCategory'] = CourseCategory::all();
 
             return view('admin.pages.course.edit', $this->param);
         } catch (\Exception $e) {
@@ -116,32 +116,31 @@ class AdminCourseController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, 
+        $this->validate($request,
             [
                 'course_name' => 'required|min:4',
-                'description' => 'required|min:4',
+                'harga' => 'required|min:4',
                 'thumbnail_video' => 'required|min:4',
             ],
             [
                 'required' => ':attribute harus diisi.',
                 'course_name.min' => 'Minimal panjang karakter 4.',
-                'description.min' => 'Minimal panjang karakter 4.',
                 'thumbnail_video.min' => 'Minimal panjang karakter 4.',
             ],
             [
                 'course_name' => 'Nama Course',
-                'description' => 'Deskripsi',
+                'harga' => 'Harga',
                 'thumbnail_video' => 'Thumbnail Video',
             ],
         );
 
         try {
             $date = date('H-i-s');
-            $random = Str::random(5);
+            $random = \Str::random(5);
 
             $course = Course::find($id);
             $course->course_name = $request->course_name;
-            $course->description = $request->description;
+            $course->harga = $request->harga;
 
             if ($request->file('avatar')) {
                 $request->file('avatar')->move('image/upload/course/thumbnail', $date.$random.$request->file('avatar')->getClientOriginalName());
@@ -149,9 +148,7 @@ class AdminCourseController extends Controller
             }
 
             $course->thumbnail_video = $request->thumbnail_video;
-            $course->category_id = $request->category;
-            $course->slug = Str::slug($request->course_name);
-            $course->user_id = $request->mentor;
+            $course->slug = \Str::slug($request->course_name);
             $course->save();
 
             return redirect('/back-admin/course/list-course')->withStatus('Berhasil memperbarui data.');
@@ -167,6 +164,24 @@ class AdminCourseController extends Controller
         try {
             Course::find($id)->delete();
             return redirect('/back-admin/course/list-course')->withStatus('Berhasil menghapus data.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+
+
+    public function cek_peserta($id)
+    {
+        try {
+            $this->param['getCourse'] = \DB::table('enrolls')
+                                        ->select('enrolls.status', 'users.name', 'users.email', 'users.alamat')
+                                        ->join('users', 'enrolls.user_id', 'users.id')
+                                        ->where('enrolls.course_id', $id)
+                                        ->get();
+
+            return view('admin.pages.course.detail_peserta', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

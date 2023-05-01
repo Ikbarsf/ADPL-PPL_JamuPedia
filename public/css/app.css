@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
 @charset "UTF-8";
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
@@ -139,6 +141,12 @@ h4, .h4 {
     font-size: 1.35rem;
   }
 }
+
+@font-face {
+    font-family: "bootstrap-icons";
+    src: url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff2?dfd0ea122577eb61795f175e0347fa2c) format("woff2"),
+  url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff?94eeade15e6b7fbed35b18ff32f0c112) format("woff");
+  }
 
 h5, .h5 {
   font-size: 1.125rem;

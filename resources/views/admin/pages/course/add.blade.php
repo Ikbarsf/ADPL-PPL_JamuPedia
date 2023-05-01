@@ -122,8 +122,16 @@
     $('#currency').maskMoney();
     })
 </script> --}}
+<script>
+    images.onchange = evt => {
+        const [file] = images.files;
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            fileName.innerHTML = document.getElementById("images").value.split("\\").pop();
+        }
+    }
+</script>
 <script src="{{asset('vendor/plugins/custom/datatables/datatables.bundle.js')}}"></script>
-
 <script src="{{asset('vendor/js/custom/apps/projects/settings/settings.js')}}"></script>
 <script src="{{asset('vendor/js/widgets.bundle.js')}}"></script>
 <script src="{{asset('vendor/js/custom/widgets.js')}}"></script>

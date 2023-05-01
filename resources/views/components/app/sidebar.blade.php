@@ -62,14 +62,34 @@
                         </a>
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                             <ul class="pl-9 mt-1 @if(!in_array(Request::segment(1), ['/back-admin/course/list-course'])){{ 'hidden' }}@endif" :class="open ? '!block' : 'hidden'">
+                                
+                                @can('customer')
+                                <li class="mb-1 last:mb-0">
+                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('back-customer/my-course/paid-course')){{ '!text-indigo-500' }}@endif" href="/back-customer/my-course/paid-course">
+                                        <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Gabung Kelas</span>
+                                    </a>
+                                </li>
+                                @endcan
+                                
+                                @can('admin')
                                 <li class="mb-1 last:mb-0">
                                     <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('back-admin/course/list-course')){{ '!text-indigo-500' }}@endif" href="/back-admin/course/list-course">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">List Kelas</span>
                                     </a>
                                 </li>
+                                @endcan
+
+                                @can('customer')
+                                <li class="mb-1 last:mb-0">
+                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('back-customer/course/list-course')){{ '!text-indigo-500' }}@endif" href="/back-customer/course/list-course">
+                                        <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Kelas Saya</span>
+                                    </a>
+                                </li>
+                                @endcan
+
                                 @can('admin')
                                 <li class="mb-1 last:mb-0">
-                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('tambah course')){{ '!text-indigo-500' }}@endif" href="#0">
+                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-admin/course/add-course')){{ '!text-indigo-500' }}@endif" href="/back-admin/course/add-course">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Tambah Kelas</span>
                                     </a>
                                 </li>
@@ -77,8 +97,9 @@
                             </ul>
                         </div>
                     </li>
-                    
+
                     <!-- Pengguna (User) -->
+                    @can('admin')
                     <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if(in_array(Request::segment(1), ['pengguna'])){{ 'bg-slate-900' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['pengguna']) ? 1 : 0 }} }">
                         <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if(in_array(Request::segment(1), ['pengguna'])){{ 'hover:text-slate-200' }}@endif" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                             <div class="flex items-center justify-between">
@@ -105,16 +126,15 @@
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">List Mitra</span>
                                     </a>
                                 </li>
-                                @can('admin')
                                 <li class="mb-1 last:mb-0">
                                     <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('analytics')){{ '!text-indigo-500' }}@endif" href="#0">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">List Customer</span>
                                     </a>
                                 </li>
-                                @endcan
                             </ul>
                         </div>
                     </li>
+                    @endcan
 
                     <!-- E-Commerce -->
                     @if(Gate::check('admin') || Gate::check('mitra'))
@@ -154,7 +174,7 @@
                         </div>
                     </li>
                     @endif
-                
+
                     <!-- Transaksi-->
                     <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if(in_array(Request::segment(1), ['finance'])){{ 'bg-slate-900' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['finance']) ? 1 : 0 }} }">
                         <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if(in_array(Request::segment(1), ['finance'])){{ 'hover:text-slate-200' }}@endif" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
@@ -178,7 +198,7 @@
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                             <ul class="pl-9 mt-1 @if(!in_array(Request::segment(1), ['finance'])){{ 'hidden' }}@endif" :class="open ? '!block' : 'hidden'">
                                 <li class="mb-1 last:mb-0">
-                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('credit-cards')){{ '!text-indigo-500' }}@endif" href="#0">
+                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-customer/transaksi/transaksi-course')){{ '!text-indigo-500' }}@endif" href="/back-customer/transaksi/transaksi-course">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Transaksi Kelas</span>
                                     </a>
                                 </li>

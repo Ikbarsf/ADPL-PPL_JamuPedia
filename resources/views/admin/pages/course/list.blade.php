@@ -55,17 +55,15 @@
                         </th>
                         <th class="text-center">No</th>
                         <th class="text-center">Nama Kursus</th>
-                        <th class="text-center">Deskripsi</th>
+                        <th class="text-center">Harga</th>
                         <th class="text-center">Thumbnail</th>
                         <th class="text-center">Video</th>
-                        <th class="text-center">Nama Kategori</th>
-                        <th class="text-center">Created at</th>
-                        <th class="text-center">Updated at</th>
                         <th class="text-center">Opsi</th>
+                        <th class="text-center">Daftar Peserta</th>
                     </tr>
                 </thead>
                 <tbody class="fw-bold text-gray-600">
-                    {{-- @foreach ($getCourse as $item)
+                    @foreach ($getCourse as $item)
                     <tr>
                         <td>
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -79,43 +77,46 @@
                             <span class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{$item->course_name}}</span>
                         </td>
                         <td class="text-center">
-                            <span class="fw-bolder">{{ \Illuminate\Support\Str::limit($item->description, 25, $end='...') }}</span>
+                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">@currency($item->harga)</p>
                         </td>
+                        {{-- <td class="text-center">
+                            <span class="fw-bolder">{{ \Illuminate\Support\Str::limit($item->description, 25, $end='...') }}</span>
+                        </td> --}}
                         <td class="text-center min-w-100px">
                             <span class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-60px" style="background-image:url('{{asset('image/upload/course/thumbnail')}}/{{$item->thumbnail_image}}')">
 
                             </span>
                         </td>
                         <td class="text-center min-w-100px">{{ \Illuminate\Support\Str::limit($item->thumbnail_video, 15, $end='...') }}</td>
-                        <td class="text-center" data-order="{{$item->category_name}}">{{$item->category_name}}</td>
-                        <td class="text-center min-w-100px">{{$item->created_at}}</td>
-                        <td class="text-center min-w-100px">{{$item->updated_at}}</td>
+                        {{-- <td class="text-center min-w-100px">{{$item->created_at}}</td>
+                        <td class="text-center min-w-100px">{{$item->updated_at}}</td> --}}
                         <td class="text-center">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Aksi
-                                <span class="svg-icon svg-icon-5 m-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
-                                    </svg>
-                                </span>
-                            </a>
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                            <div class="d-flex justify-content-center menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" >
                                 <div class="menu-item px-3">
                                     <form action="{{url('/back-admin/course/'.$item->id.'/edit-course')}}" method="POST" class="inline">
                                         @csrf
-                                        <button type="submit" class="btn w-100 menu-link px-3 fs-7 text-center">Edit</button>
+                                        <button type="submit" class="btn btn-warning w-100 px-3 fs-7">Edit</button>
                                     </form>
                                 </div>
                                 <div class="menu-item px-3">
                                     <form action="{{url('/back-admin/course/'.$item->id.'/destroy-course')}}" method="POST" class="inline">
                                         @method('delete')
                                         @csrf
-                                        <button type="submit" class="btn w-100 menu-link px-3 fs-7 text-center" onclick="return confirm('Hapus Data ?')">Hapus</button>
+                                        <button type="submit" class="btn btn-danger w-100 px-3 fs-7" onclick="return confirm('Hapus Data ?')">Hapus</button>
                                     </form>
                                 </div>
                             </div>
                         </td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" >
+                                <form action="{{url('/back-admin/course/detail-peserta/'.$item->id)}}" method="GET" class="inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary w-100 px-3 fs-7">Lihat Peserta</button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>
