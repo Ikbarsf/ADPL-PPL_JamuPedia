@@ -122,12 +122,12 @@
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                             <ul class="pl-9 mt-1 @if(!in_array(Request::segment(1), ['pengguna'])){{ 'hidden' }}@endif" :class="open ? '!block' : 'hidden'">
                                 <li class="mb-1 last:mb-0">
-                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('pengguna')){{ '!text-indigo-500' }}@endif" href="#0">
+                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-admin/user/list-mitra')){{ '!text-indigo-500' }}@endif" href="/back-admin/user/list-mitra">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">List Mitra</span>
                                     </a>
                                 </li>
                                 <li class="mb-1 last:mb-0">
-                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('analytics')){{ '!text-indigo-500' }}@endif" href="#0">
+                                    <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-admin/user/list-customer')){{ '!text-indigo-500' }}@endif" href="/back-admin/user/list-customer">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">List Customer</span>
                                     </a>
                                 </li>

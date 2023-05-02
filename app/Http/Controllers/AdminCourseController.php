@@ -24,7 +24,7 @@ class AdminCourseController extends Controller
             $this->param['getCourse'] = \DB::table('courses')
                                         ->select('courses.*')
                                         ->get();
-            $this->param['getcCategory'] = CourseCategory::all();
+            $this->param['getCategory'] = CourseCategory::all();
 
             return view('admin.pages.course.list', $this->param);
         } catch (\Exception $e) {

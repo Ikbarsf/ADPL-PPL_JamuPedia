@@ -14,40 +14,37 @@ class AdminUserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:Admin']);
+        $this->middleware(['role:admin']);
     }
 
     private $param;
-    public function listEmployee()
+    public function listCustomer()
     {
         try {
-            $dataEmployee = User::whereHas('roles', function($thisRole){
-                $thisRole->where('name', 'Employee');
-            })->select('users.*', 'users.id as userID', 'user_employees.*', 'positions.*', 'divisions.*')
-            ->join('user_employees', 'users.id', 'user_employees.user_id')
-            ->join('positions', 'user_employees.position_id', 'positions.id')
-            ->join('divisions', 'positions.division_id', 'divisions.id')
+            $dataCustomer = User::whereHas('roles', function($thisRole){
+                $thisRole->where('name', 'customer');
+            })->select('users.*')
             ->get();
 
-            $this->param['getEmployee'] = $dataEmployee; 
-            return view('admin.pages.employee.list', $this->param);
+            $this->param['getCustomer'] = $dataCustomer; 
+            return view('admin.pages.customer.list', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
         }
     }
-    public function listMentor()
+    
+    public function listMitra()
     {
         try {
-            $dataMentor = User::whereHas('roles', function($thisRole){
-                $thisRole->where('name', 'Mentor');
-            })->select('users.*', 'users.id as userID', 'user_employees.*')
-            ->join('user_employees', 'users.id', 'user_employees.user_id')
+            $dataMitra = User::whereHas('roles', function($thisRole){
+                $thisRole->where('name', 'mitra');
+            })->select('users.*')
             ->get();
 
-            $this->param['getMentor'] = $dataMentor; 
-            return view('admin.pages.mentor.list', $this->param);
+            $this->param['getMitra'] = $dataMitra; 
+            return view('admin.pages.mitra.list', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

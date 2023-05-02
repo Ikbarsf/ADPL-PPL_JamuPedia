@@ -8,10 +8,10 @@
 <div class="toolbar" id="kt_toolbar">
     <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
         <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">Home - Master Data - Pengguna (User) - </span>&nbsp;List Mentor</h1>
+            <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">Home - Master Data - Pengguna (User) - </span>&nbsp;List Customer</h1>
         </div>
         <div class="d-flex align-items-center gap-2 gap-lg-3">
-            <a href="{{url('/back-admin/user/add-mentor')}}" class="btn btn-sm btn-primary">Tambah Data</a>
+            {{-- <a href="{{url('/back-admin/user/add-employee')}}" class="btn btn-sm btn-primary">Tambah Data</a> --}}
         </div>
     </div>
 </div>
@@ -37,8 +37,8 @@
                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-product-filter="status" data-kt-table-widget-5="status">
                         <option></option>
                         <option value="all">All</option>
-                        <option value="active">active</option>
-                        <option value="deactive">deactive</option>
+                        {{-- <option value="active">active</option>
+                        <option value="deactive">deactive</option> --}}
                     </select>
                 </div>
             </div>
@@ -55,14 +55,11 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">Email</th>
-                        <th class="text-center">Foto Profil</th>
-                        <th class="text-center">Tentang Karyawan</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Opsi</th>
+                        <th class="text-center">Alamat</th>
                     </tr>
                 </thead>
                 <tbody class="fw-bold text-gray-600">
-                    @foreach ($getMentor as $item)
+                    @foreach ($getCustomer as $item)
                     <tr>
                         <td>
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -78,47 +75,9 @@
                         <td class="text-center">
                             <span class="fw-bolder">{{$item->email}}</span>
                         </td>
-                        <td class="text-center min-w-100px">
-                            <span class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-60px" style="background-image:url('{{asset('image/upload/avatar-user')}}/{{$item->avatar}}')">
-                            </span>
-                        </td>
-                        <td class="text-center min-w-100px">{{ \Illuminate\Support\Str::limit($item->about_me, 25, $end='...') }}</td>
-                        <td class="text-center" data-order="{{$item->status_user}}">
-                            <div class="badge @if ($item->status_user == 'active') badge-light-success @else badge-light-warning @endif ">{{$item->status_user}}</div>
-                        </td>
                         <td class="text-center">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Aksi
-                                <span class="svg-icon svg-icon-5 m-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
-                                    </svg>
-                                </span>
-                            </a>
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-                                <div class="menu-item px-3">
-                                    @if ($item->status_user == 'active')
-                                    <form action="{{url('/back-admin/user/'.$item->userID.'/deactive-mentor')}}" method="POST" class="inline">
-                                        @method('put')
-                                        @csrf
-                                        <button type="submit" class="btn w-100 menu-link px-3 fs-7 text-center" onclick="return confirm('Yakin Menonaktifkan Akun ?')">Non Aktif</button>
-                                    </form>
-                                    @elseif ($item->status_user == 'deactive')
-                                    <form action="{{url('/back-admin/user/'.$item->userID.'/active-mentor')}}" method="POST" class="inline">
-                                        @method('put')
-                                        @csrf
-                                        <button type="submit" class="btn w-100 menu-link px-3 fs-7 text-center" onclick="return confirm('Yakin Mengaktifkan Akun ?')">Aktif</button>
-                                    </form>
-                                    @endif
-                                </div>
-                                <div class="menu-item px-3">
-                                    <form action="{{url('/back-admin/user/'.$item->userID.'/reset-mentor')}}" method="POST" class="inline">
-                                        @method('put')
-                                        @csrf
-                                        <button type="submit" class="btn w-100 menu-link px-3 fs-7 text-center" onclick="return confirm('Yakin Reset Password ?')">Reset Password</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
+                            <p class="fw-bolder ms-3">{{ ($item->alamat) }}</p>
+                        </td>   
                     </tr>
                     @endforeach
                 </tbody>

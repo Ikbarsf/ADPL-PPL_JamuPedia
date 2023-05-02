@@ -46,7 +46,7 @@ class CreateNewUser implements CreatesNewUsers
                     'email' => $input['email'],
                     'alamat' => $input['alamat'],
                     'password' => Hash::make($input['password']),
-                ]), 
+                ]),
                 function (User $user) {
                     $this->mitra($user);
                     return redirect()->intended(Fortify::redirects('login'));
