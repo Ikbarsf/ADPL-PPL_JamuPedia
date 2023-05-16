@@ -55,7 +55,7 @@ Route::get('/back-admin/user/list-mitra', [AdminUserController::class, 'listMitr
 
 
 // Customer
-Route::get('/back-customer/dashboard', [CustomerDashboardController::class, 'index']);
+// Route::get('/back-customer/dashboard', [CustomerDashboardController::class, 'index']);
 
 Route::get('/back-customer/course/list-course', [CustomerListCourseController::class, 'index']);
 Route::get('/back-customer/my-course/paid-course', [CustomerListCourseController::class, 'myCourse']);
@@ -73,4 +73,10 @@ Route::post('/back-customer/enroll/enroll-course/{id}', [CustomerEnrollControlle
 
 Route::get('/back-customer/transaksi/transaksi-course', [CustomerTransaksiCourseController::class, 'index']);
 
+
+
+
+// Mitra
+// Route::get('/back-mitra/dashboard', [MitraDashboardController::class, 'index']);
+Route::get('/back-mitra/E-Commers/list-barang', [MitraECommersController::class, 'index']);
 
