@@ -11,4 +11,7 @@ class Enroll extends Model
     use HasFactory, HasRoles;
     protected $table = 'enrolls';
     protected $primaryKey = 'id';
+    public function course(){
+        return $this->belongsTo(Course::class);
+    }
 }

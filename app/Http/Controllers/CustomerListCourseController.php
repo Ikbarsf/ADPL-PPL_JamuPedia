@@ -25,59 +25,15 @@ class        CustomerListCourseController extends Controller
     public function index()
     {
         try {
-        //     $this->param['getCourse'] = \DB::table('courses')
-        //                                 ->select('courses.*', 'course_categories.category_name')
-        //                                 ->join('course_categories', 'courses.category_id', 'course_categories.id')
-        //                                 ->get();
-        //     $this->param['getCourse'] = \DB::table('courses')
-        //                                 ->select('courses.*', 'course_categories.category_name')
-        //                                 ->join('course_categories', 'courses.category_id', 'course_categories.id')
-        //                                 ->leftJoin('enrolls', 'courses.id', 'enrolls.course_id')
-        //                                 ->leftJoin('users', 'users.id', 'enrolls.user_id')
-        //                                 ->where('enrolls.id', NULL)
-        //                                 ->where('enrolls.user_id', '=', \Auth::user()->id)
-        //                                 ->get();
-        //     $this->param['getCourse'] = \DB::table('courses')
-        //                                     ->select('courses.*', 'course_categories.category_name')
-        //                                     ->join('course_categories', 'courses.category_id', 'course_categories.id')
-        //                                     ->join('enrolls', 'courses.id', 'enrolls.course_id')
-        //                                     ->join('users', 'enrolls.user_id', 'users.id')
-        //                                     ->where('users.id', \Auth::user()->id)
-        //                                     ->get();
-        //     $courseID = array_column($this->param['getCourse']->toArray(), 'id');
-        //     $this->param['getCoursed'] = \DB::table('courses')
-        //                                 ->select('courses.*', 'course_categories.category_name')
-        //                                 ->join('course_categories', 'courses.category_id', 'course_categories.id')
-        //                                 ->whereNotIn('courses.id', $courseID)
-        //                                 ->get();
-        //     dd($courseID);
-        //     $this->param['getCoursed'] = \DB::table('courses')
-        //                                     ->select('courses.*')
-        //                                     ->join('enrolls', 'courses.id', 'enrolls.course_id')
-        //                                     ->leftJoin('users', 'enrolls.user_id', 'users.id')
-        //                                     ->where('users.id', \Auth::user()->id)
-        //                                     ->where('courses.id', NULL)
-        //                                     ->get();
-        //     $this->param['getCoursed'] = \DB::table('users')
-        //                                 ->select('courses.*')
-        //                                 ->join('enrolls', 'users.id', 'enrolls.user_id')
-        //                                 ->join('courses', 'enrolls.course_id', 'courses.id')
-        //                                 ->where('users.id', \Auth::user()->id)
-        //                                 ->where('enrolls.course_id', NULL)
-        //                                 ->where('enrolls.user_id', NULL)
-        //                                 ->get();
-
-        //     $this->param['getcBenefit'] = CourseBenefit::all();
-        //     $this->param['getEnroll'] = Enroll::where('user_id', \Auth::user()->id)->get();
-
-        $this->param['getMyCourse'] = \DB::table('enrolls')
-                            ->select('courses.*')
-                            ->join('courses', 'courses.id', 'enrolls.course_id')
-                            ->where('enrolls.user_id', \Auth::user()->id)
-                            // ->where('enrolls.status', 'active')
-                            ->get();
+        // $this->param['getMyCourse'] = \DB::table('enrolls')
+        //                     ->select('courses.*')
+        //                     ->join('courses', 'courses.id', 'enrolls.course_id')
+        //                     ->where('enrolls.user_id', \Auth::user()->id)
+        //                     // ->where('enrolls.status', 'active')
+        //                     ->get();
+        $this->param['getMyCourse'] = Enroll::where('user_id', auth()->user()->id)->get();
             
-            return view('customer.pages.course.list', $this->param);
+            return view('customer.pages.my-course.list', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -88,34 +44,6 @@ class        CustomerListCourseController extends Controller
     public function myCourse()
     {
         try{
-            // $this->param['getMyCourse'] = \DB::table('enrolls')
-            //                 ->select('courses.*')
-            //                 ->join('courses', 'courses.id', 'enrolls.course_id')
-            //                 ->where('enrolls.user_id', \Auth::user()->id)
-            //                 ->where('enrolls.status', 'active')
-            //                 ->get();
-            
-            // $this->param['getTotalContent'] = \DB::table('course_module_contents')
-            //                                     ->select(array('courses.id AS course_id', 'courses.course_name AS course_name', \DB::raw('COUNT(course_module_contents.id) AS total_content')))
-            //                                     ->join('course_modules', 'course_module_contents.course_module_id', 'course_modules.id')
-            //                                     ->join('courses', 'course_modules.course_id', 'courses.id')
-            //                                     ->groupBy('courses.course_name')
-            //                                     ->get();
-            // $this->param['getTotalContentDone'] = \DB::table('course_module_content_finsishs')
-            //                                     ->select(array('courses.id AS course_id', 'courses.course_name AS course_name', \DB::raw('COUNT(course_module_content_finsishs.course_module_content_id) AS total_content')))
-            //                                     ->join('enrolls', 'course_module_content_finsishs.enroll_id', 'enrolls.id')
-            //                                     ->join('courses', 'enrolls.course_id', 'courses.id')
-            //                                     ->where('enrolls.user_id', \Auth::user()->id)
-            //                                     ->groupBy('courses.course_name')
-            //                                     ->get();
-
-            // dd($this->param['getTotalContent']);
-            // dd($this->param['getTotalContentDone']);
-
-            // $this->param['getCourse'] = \DB::table('courses')
-            //                                 ->select('courses.*')
-            //                                 ->get();
-
             $this->param['getCourse'] = \DB::table('courses')
                                             ->select('courses.*')
                                             ->join('enrolls', 'courses.id', 'enrolls.course_id')
@@ -132,7 +60,7 @@ class        CustomerListCourseController extends Controller
             
             $this->param['getcCategory'] = CourseCategory::all();
     
-            return view('customer.pages.my-course.list', $this->param);
+            return view('customer.pages.course.list', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -157,6 +85,19 @@ class        CustomerListCourseController extends Controller
             //                                             ->get(); //getBenefit
 
             return view('customer.pages.my-course.detail', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+    public function destroy($id)
+    {
+        try {
+            // $post = Enroll::find($id);
+            // $post->destroy();
+            Course::where('id', $id)->delete();
+            return redirect('/back-customer/course/list-course')->withStatus('Berhasil menghapus data.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

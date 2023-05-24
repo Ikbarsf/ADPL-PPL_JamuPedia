@@ -98,13 +98,13 @@
                                         <button type="submit" class="btn btn-warning w-100 px-3 fs-7">Edit</button>
                                     </form>
                                 </div>
-                                <div class="menu-item px-3">
+                                {{-- <div class="menu-item px-3">
                                     <form action="{{url('/back-admin/course/'.$item->id.'/destroy-course')}}" method="POST" class="inline">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="btn btn-danger w-100 px-3 fs-7" onclick="return confirm('Hapus Data ?')">Hapus</button>
                                     </form>
-                                </div>
+                                </div> --}}
                             </div>
                         </td>
                         <td class="text-center">

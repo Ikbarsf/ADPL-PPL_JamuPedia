@@ -13,7 +13,7 @@
 <div class="toolbar" id="kt_toolbar">
     <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
         <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">Home - Course - </span>&nbsp;List Course Saya</h1>
+            <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">Home - Transaksi - </span>&nbsp;Transaksi Kelas</h1>
         </div>
     </div>
 </div>
@@ -21,83 +21,60 @@
 
 @section('content')
 <div id="kt_content_container" class="container-xxl">
-    @php
-        $percentage = 0;
-    @endphp
-    {{-- @foreach ($getMyCourse as $item) 
-        <div class="card mb-6">
-            <div class="card-body pt-9 pb-0">
-                <div class="d-flex flex-wrap flex-sm-nowrap">
-                    <div class="me-7 mb-4">
-                        <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                            <img src="{{asset('image/upload/course/thumbnail')}}/{{$item->thumbnail_image}}" alt="image" class="img-thumbnail custom-img" />
-                        </div>
-                    </div>
-                    <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap">
-                            <div class="d-flex flex-column w-75">
-                                <div class="d-flex align-items-center mb-2">
-                                    <a href="{{url('/back-customer/my-course/'.$item->slug).'/persiapan-course'}}" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$item->course_name}}</a>
-                                </div>
-                                <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
-                                    <a href="{{url('/back-customer/my-course/'.$item->slug).'/persiapan-course'}}" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">{{ \Illuminate\Support\Str::limit($item->description, 250, $end='...') }}</a>
+    <div class="card">
+        <div class="card-body p-lg-20 pb-lg-0">
+            <div class="mb-17">
+                <div class="d-flex flex-stack mb-5">
+                    <h3 class="text-dark">List Kelas Tersedia</h3>
+                </div>
+                <div class="separator separator-dashed mb-3"></div>
+                <div class="row g-10">
+                    @foreach ($getMyCourse as $item) 
+                        <div class="card mb-6">
+                            <div class="card-body pt-9 pb-0">
+                                <div class="d-flex flex-wrap flex-sm-nowrap">
+                                    <div class="me-7 mb-4">
+                                        <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                                            <img src="{{asset('image/upload/course/thumbnail')}}/{{$item->thumbnail_image}}" alt="image" class="img-thumbnail custom-img" />
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between align-items-start flex-wrap">
+                                            <div class="d-flex flex-column w-75">
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <a href="{{url('/back-course/my-course/'.$item->slug).'/persiapan-course'}}" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$item->course_name}}</a>
+                                                </div>
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <a href="{{url('/back-course/my-course/'.$item->slug).'/persiapan-course'}}" class="text-gray-600 text-hover-primary fs-2 fw-bolder me-1">Rp.{{$item->harga}}</a>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex my-4">
+                                                <a href="{{url('/back-customer/my-course/'.$item->slug).'/persiapan-course'}}" class="btn btn-sm btn-primary me-2">Lihat Detail</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="d-flex my-4">
-                                <a href="{{url('/back-customer/my-course/'.$item->slug).'/persiapan-course'}}" class="btn btn-sm btn-primary me-2">Lihat Detail</a>
+                        </div>
+                        @endforeach
+                        <div class="d-flex my-1">
+                            <div class="align-items-center">
+                                <a href="{{url('/back-customer/my-course/'.$item->slug).'/persiapan-course'}}" class="btn btn-sm btn-primary">Bayar Sekarang</a>
+                            </div>
+                            <div class="card my-2 ms-2" id="msg">
+                                
                             </div>
                         </div>
-                        <div class="d-flex flex-wrap">
-                            <div class="d-flex align-items-center w-100 flex-column">
-                                <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                    <span class="fw-bold fs-6 text-gray-400">Progress</span>
-                                    <span class="fw-bolder fs-6">50%</span>
-                                    @foreach ($getTotalContent as $itemGTC)
-                                    @if ($item->id == $itemGTC->course_id)
-                                        @foreach ($getTotalContentDone as $itemGTCD)
-                                        @if ($itemGTC->course_id == $itemGTCD->course_id)
-                                        @php
-                                            if ($getTotalContentDone != null) {
-                                                $percentage = $itemGTCD->total_content/$itemGTC->total_content * 100;
-                                            }
-                                        @endphp
-                                        @endif
-                                        @endforeach
-                                    @endif
-                                    @endforeach 
-                                    <span class="fw-bolder fs-6">{{$percentage}}%</span>
-                                </div>
-                                <div class="h-5px mx-3 w-100 bg-light mb-3">
-                                    <div class="bg-success rounded h-5px" role="progressbar" style="width: {{$percentage}}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                @php
-                                    $percentage = 0;
-                                @endphp
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
-    @endforeach --}}
-    <thead>
-        <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-            <th class="w-10px pe-2">
-                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
-                </div>
-            </th>
-            <th class="text-center">No</th>
-            <th class="text-center">Nama Kursus</th>
-            <th class="text-center">Deskripsi</th>
-            <th class="text-center">Thumbnail</th>
-            <th class="text-center">Video</th>
-            <th class="text-center">Nama Kategori</th>
-            <th class="text-center">Created at</th>
-            <th class="text-center">Updated at</th>
-            <th class="text-center">Opsi</th>
-        </tr>
-    </thead>
+    </div>
+
+</div>  
+
+
+
 @endsection
 
 @section('extraJS')
@@ -110,4 +87,7 @@
 <script src="{{asset('vendor/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
 <script src="{{asset('vendor/js/custom/utilities/modals/create-app.js')}}"></script>
 <script src="{{asset('vendor/js/custom/utilities/modals/users-search.js')}}"></script>
+<script>
+    
+</script>
 @endsection
