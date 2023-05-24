@@ -6,6 +6,7 @@ use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminCourseController;
+use App\Http\Controllers\MitraECommersController;
 use App\Http\Controllers\CustomerEnrollController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\CustomerListCourseController;
@@ -79,4 +80,4 @@ Route::get('/back-customer/transaksi/transaksi-course', [CustomerTransaksiCourse
 // Mitra
 // Route::get('/back-mitra/dashboard', [MitraDashboardController::class, 'index']);
 Route::get('/back-mitra/E-Commers/list-barang', [MitraECommersController::class, 'index']);
-
+Route::get('/back-mitra/E-Commers/add-barang', [MitraECommersController::class, 'add']);

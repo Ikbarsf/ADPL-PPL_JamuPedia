@@ -28,4 +28,20 @@ class MitraECommersController extends Controller
                 return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
             }
     }
+
+
+    public function add()
+    {
+        try {
+            $this->param['getMentor'] = User::whereHas('roles', function($thisRole){
+                $thisRole->where('name', 'admin');
+            })->get();
+
+            return view('mitra.pages.barang.add', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
 }

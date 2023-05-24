@@ -14,7 +14,7 @@ use App\Models\Enroll;
 use App\Models\CourseReview;
 use App\Models\ReportQuiz;
 
-class CustomerListCourseController extends Controller
+class        CustomerListCourseController extends Controller
 {
     public function __construct()
     {

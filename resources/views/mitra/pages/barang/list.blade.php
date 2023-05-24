@@ -1,4 +1,4 @@
-@extends('customer.layouts.app')
+@extends('mitra.layouts.app')
 
 @section('extraCSS')
     <link href="{{asset('vendor/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
@@ -8,7 +8,7 @@
 <div class="toolbar" id="kt_toolbar">
     <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
         <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">Home - Course - </span>&nbsp;List Course</h1>
+            <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">Home - E-Commers - </span>&nbsp;Lihat Produk</h1>
         </div>
     </div>
 </div>
@@ -20,7 +20,7 @@
         <div class="card-body p-lg-20 pb-lg-0">
             <div class="mb-17">
                 <div class="d-flex flex-stack mb-5">
-                    <h3 class="text-dark">List Kelas Tersedia</h3>
+                    <h3 class="text-dark">List Data Produk</h3>
                     {{-- <a href="#" class="fs-6 fw-bold link-primary">View All Videos</a> --}}
                 </div>
                 <div class="separator separator-dashed mb-3"></div>
