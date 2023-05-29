@@ -30,25 +30,21 @@
                             <div class="d-flex flex-wrap flex-sm-nowrap">
                                 <div class="me-7 mb-4">
                                     <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                                        <img src="{{asset('image/upload/course/thumbnail')}}/{{$item->course->thumbnail_image}}" alt="image" class="img-thumbnail custom-img" />
+                                        <img src="{{asset('image/upload/course/thumbnail')}}/{{$item->thumbnail_image}}" alt="image" class="img-thumbnail custom-img" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
                                     <div class="d-flex justify-content-between align-items-start flex-wrap">
                                         <div class="d-flex flex-column w-75">
                                             <div class="d-flex align-items-center mb-2">
-                                                <a href="{{url('/back-course/my-course/'.$item->course->slug).'/persiapan-course'}}" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$item->course->course_name}}</a>
+                                                <a href="{{url('/back-course/my-course/'.$item->slug).'/persiapan-course'}}" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$item->course_name}}</a>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <a href="{{url('/back-course/my-course/'.$item->slug).'/persiapan-course'}}" class="text-gray-600 text-hover-primary fs-2 fw-bolder me-1">Rp.{{$item->harga}}</a>
                                             </div>
                                         </div>
-                                        <div class="d-flex my-20">
-                                            <a href="{{url('/back-customer/my-course/'.$item->course->slug).'/persiapan-course'}}" class="btn btn-sm btn-primary me-2">Lihat Detail</a>
-                                        </div>
-                                        <div class="menu-item my-20">
-                                            <form action="{{url('/back-customer/my-course/'.$item->id).'/destroy-course'}}" method="POST" class="inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-danger w-100 px-3 fs-7" onclick="return confirm('Hapus Data ?')">Hapus</button>
-                                            </form>
+                                        <div class="d-flex my-4">
+                                            <a href="{{url('/back-customer/my-course/'.$item->slug).'/persiapan-course'}}" class="btn btn-sm btn-primary me-2">Lihat Detail</a>
                                         </div>
                                     </div>
                                 </div>

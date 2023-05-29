@@ -25,21 +25,22 @@ class        CustomerListCourseController extends Controller
     public function index()
     {
         try {
-        // $this->param['getMyCourse'] = \DB::table('enrolls')
-        //                     ->select('courses.*')
-        //                     ->join('courses', 'courses.id', 'enrolls.course_id')
-        //                     ->where('enrolls.user_id', \Auth::user()->id)
-        //                     // ->where('enrolls.status', 'active')
-        //                     ->get();
-        $this->param['getMyCourse'] = Enroll::where('user_id', auth()->user()->id)->get();
+        $this->param['getMyCourse'] = \DB::table('enrolls')
+                            ->select('courses.*')
+                            ->join('courses', 'courses.id', 'enrolls.course_id')
+                            ->where('enrolls.user_id', \Auth::user()->id)
+                            ->where('status', '=', 'sudah bayar')
+                            ->get();
+        // $this->param['getMyCourse'] = Enroll::all()->where('status', '=', 'sudah bayar');
             
-            return view('customer.pages.my-course.list', $this->param);
+            return view('customer.pages.my-course.list', $this->param); 
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
         }
     }
+
 
     public function myCourse()
     {

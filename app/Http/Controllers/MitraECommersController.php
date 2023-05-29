@@ -15,11 +15,9 @@ class MitraECommersController extends Controller
     public function index()
     {
         try {
-            $this->param['getMyCourse'] = \DB::table('enrolls')
-                                        ->select('courses.*')
-                                        ->join('courses', 'courses.id', 'enrolls.course_id')
-                                        ->where('enrolls.user_id', \Auth::user()->id)
-                                        // ->where('enrolls.status', 'active')
+            $this->param['getProducts'] = \DB::table('products')
+                                        ->select('products.*', 'product_categories.category_name')
+                                        ->join('product_categories', 'products.category_id', 'product_categories.id')
                                         ->get();
                 return view('mitra.pages.barang.list', $this->param);
             } catch (\Exception $e) {

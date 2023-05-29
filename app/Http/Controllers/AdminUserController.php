@@ -52,36 +52,7 @@ class AdminUserController extends Controller
         }
     }
 
-    public function addEmployee()
-    {
-        try {
-            $this->param['getPosition'] = \DB::table('positions')
-                                            ->select('positions.id', 'positions.position_name', 'divisions.division_name')
-                                            ->join('divisions', 'positions.division_id', 'divisions.id')
-                                            ->get();
 
-            return view('admin.pages.employee.add', $this->param);
-        } catch (\Exception $e) {
-            return redirect()->back()->withError($e->getMessage());
-        } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
-        }
-    }
-    public function addMentor()
-    {
-        try {
-            $this->param['getPosition'] = \DB::table('positions')
-                                            ->select('positions.id', 'positions.position_name', 'divisions.division_name')
-                                            ->join('divisions', 'positions.division_id', 'divisions.id')
-                                            ->get();
-
-            return view('admin.pages.mentor.add', $this->param);
-        } catch (\Exception $e) {
-            return redirect()->back()->withError($e->getMessage());
-        } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
-        }
-    }
 
     public function storeEmployee(Request $request)
     {

@@ -24,7 +24,7 @@ class CustomerEnrollController extends Controller
             $enroll->status = 'belum bayar';
             $enroll->save();
 
-            return redirect('/back-customer/course/list-course')->withStatus('Berhasil melakukan Enrollment.');
+            return redirect('/back-customer/transaksi/transaksi-course')->withStatus('Berhasil Menambahkan Kelas.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

@@ -57,15 +57,18 @@
                             </div>
                         </div>
                         @endforeach
-                        <div class="d-flex my-1">
-                            <div class="align-items-center">
-                                <a href="{{url('/back-customer/my-course/'.$item->slug).'/persiapan-course'}}" class="btn btn-sm btn-primary">Bayar Sekarang</a>
+                        <form action="{{url('/back-customer/my-course/bayar')}}" method="POST">
+                            @csrf
+                            @method('patch')
+                            <div class="d-flex my-1">
+                                <div class="align-items-center">
+                                    <button type="submit" class="btn btn-sm btn-primary">Bayar Sekarang</button>
+                                </div>
+                                <div class="align-items-center pl-10">
+                                    <button type="disable" class="btn btn-sm btn-primary">Total Biaya : {{  $getPrice}}</a>
+                                </div>
                             </div>
-                            <div class="card my-2 ms-2" id="msg">
-                                
-                            </div>
-                        </div>
-
+                        </form>
                 </div>
             </div>
         </div>

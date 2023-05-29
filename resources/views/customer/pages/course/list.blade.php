@@ -43,7 +43,7 @@
                                     <button type="reset" class="btn btn-light btn-active-light-primary me-2 w-100">Selengkapnya</button>
                                 </div>
                                 <div class="col-md-6">
-                                    <button type="submit" class="btn btn-primary w-100">Enrolled</button>
+                                    <button type="submit" class="btn btn-primary w-100">Tergabung</button>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                                 <div class="col-md-6">
                                     <form action="{{url('/back-customer/enroll/enroll-course')}}/{{$item->id}}" method="POST" class="inline">
                                         @csrf
-                                        <button type="submit" class="btn btn-primary w-100">Enroll</button>
+                                        <button type="submit" class="btn btn-primary w-100">Gabung Kelas</button>
                                     </form>
                                 </div>
                             </div>

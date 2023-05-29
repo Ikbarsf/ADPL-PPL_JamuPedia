@@ -65,6 +65,7 @@ Route::get('/back-customer/my-course/{slugCourse}/{slugModule}/{slugContent}', [
 Route::post('/back-customer/enroll/enroll-course/{id}', [CustomerEnrollController::class, 'store']);
 Route::get('/back-customer/transaksi/transaksi-course', [CustomerTransaksiCourseController::class, 'index']);
 Route::delete('/back-customer/my-course/{id}/destroy-course', [CustomerEnrollController::class, 'destroy']);
+Route::patch('/back-customer/my-course/bayar', [CustomerTransaksiCourseController::class, 'bayar']);
 
 
 
