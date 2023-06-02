@@ -49,7 +49,6 @@ class CreateNewUser implements CreatesNewUsers
                 ]),
                 function (User $user) {
                     $this->mitra($user);
-                    return redirect()->intended(Fortify::redirects('login'));
                 });
             });
         }else{

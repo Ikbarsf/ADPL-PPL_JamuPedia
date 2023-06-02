@@ -2,7 +2,7 @@
     <img src="images/Logo1.png" alt="jamupedia" class="w-40 mx-auto mt-40">
     <h1 class="text-3xl text-slate-800 font-bold mb-20">{{ __('Welcome To JamuPedia') }}</h1>
     @if (session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600">
+        <div class="p-4 font-medium text-sm text-white bg-green-400 mb-5 rounded-xl">
             {{ session('status') }}
         </div>
     @endif   
