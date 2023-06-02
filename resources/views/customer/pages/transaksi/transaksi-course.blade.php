@@ -28,6 +28,7 @@
                     <h3 class="text-dark">List Kelas Tersedia</h3>
                 </div>
                 <div class="separator separator-dashed mb-3"></div>
+                @if ($getMyCourse->count()>0)
                 <div class="row g-10">
                     @foreach ($getMyCourse as $item) 
                         <div class="card mb-6">
@@ -70,6 +71,7 @@
                             </div>
                         </form>
                 </div>
+                @endif
             </div>
         </div>
     </div>

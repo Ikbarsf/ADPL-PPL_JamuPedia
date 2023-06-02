@@ -34,13 +34,13 @@
                                 <a href="{{url('#')}}" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">{{$item->course_name}}</a>
                                 <div class="fw-bold fs-5 text-gray-600 text-dark my-4">{{ \Illuminate\Support\Str::limit($item->harga, 150, $end='...') }}</div>
                             </div>
-                            <div class="m-0 h-250px">
+                            {{-- <div class="m-0 h-250px">
                                 <a href="{{url($item->thumbnail_video)}}" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">{{$item->thumbnail_video}}</a>
-                            </div>
+                            </div> --}}
                             <hr>
                             <div class="row mt-5">
                                 <div class="col-md-6">
-                                    <button type="reset" class="btn btn-light btn-active-light-primary me-2 w-100">Detail</button>
+                                    <a href="{{ url("/back-customer/my-course/".$item->slug."/course") }}" class="btn btn-light btn-active-light-primary me-2 w-100">Detail</a>
                                 </div>
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-primary w-100">Tergabung</button>
@@ -52,9 +52,10 @@
                     @foreach ($getCoursed as $item)   
                     <div class="col-md-4 py-5">
                         <div class="card-xl-stretch me-md-6">
-                            <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-10" style="background-image:url('{{asset('image/upload/course/thumbnail')}}/{{$item->thumbnail_image}}')" data-fslightbox="lightbox-video-tutorials" href="{{$item->thumbnail_video}}">
+                            {{-- <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-10" style="background-image:url('{{asset('image/upload/course/thumbnail')}}/{{$item->thumbnail_image}}')" data-fslightbox="lightbox-video-tutorials" href="{{$item->thumbnail_video}}">
                                 <img src="{{asset('vendor/media/svg/misc/video-play.svg')}}" class="position-absolute top-50 start-50 translate-middle" alt="" />
-                            </a>
+                            </a> --}}
+                            <img class="card-rounded min-h-175px mb-10" src="{{asset('image/upload/course/thumbnail')}}/{{$item->thumbnail_image}}"/>
                             <div class="m-0 h-250px">
                                 <a href="{{url('#')}}" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">{{$item->course_name}}</a>
                                 <div class="fw-bold fs-5 text-gray-600 text-dark my-4">{{ \Illuminate\Support\Str::limit($item->harga, 150, $end='...') }}</div>
@@ -62,7 +63,7 @@
                             <hr>
                             <div class="row mt-5">
                                 <div class="col-md-6">
-                                    <button type="reset" class="btn btn-light btn-active-light-primary me-2 w-100">Detail</button>
+                                    <a href="{{ url("/back-customer/course/".$item->slug."/persiapan-course") }}" class="btn btn-light btn-active-light-primary me-2 w-100">Detail</a>
                                 </div>
                                 <div class="col-md-6">
                                     <form action="{{url('/back-customer/enroll/enroll-course')}}/{{$item->id}}" method="POST" class="inline">

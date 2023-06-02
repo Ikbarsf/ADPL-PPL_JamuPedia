@@ -21,7 +21,7 @@ class CustomerTransaksiCourseController extends Controller
                                 ->select('courses.*')
                                 ->join('courses', 'courses.id', 'enrolls.course_id')
                                 ->where('enrolls.user_id', \Auth::user()->id)
-                                // ->where('enrolls.status', 'active')
+                                ->where('enrolls.status', 'belum bayar')
                                 ->get();
             $this->param['getPrice'] = \DB::table('enrolls')
                                         ->select('courses.*')
@@ -40,14 +40,28 @@ class CustomerTransaksiCourseController extends Controller
     public function bayar()
     {
         try {
-            $bayar = \DB::table('enrolls')->where('status', '=', 'belum bayar')->update(array('status' => 'sudah bayar'));
+            \DB::table('enrolls')->where('status', '=', 'belum bayar')->update(array('status' => 'sudah bayar'));
             return redirect('/back-customer/course/list-course')->withStatus('Berhasil membayar kelas');
-            } catch (\Exception $e) {
-                return redirect()->back()->withError($e->getMessage());
-            } catch (\Illuminate\Database\QueryException $e) {
-                return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
-            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
     }
 
+    public function myCourseDetail($slug)
+    {
+        try{
+            $this->param['getCourse'] = Course::where('slug', $slug)
+                                                ->first(); //getCourse
+            $getCourseID = $this->param['getCourse']->id; //getCourseID
 
+
+            return view('customer.pages.my-course.detail', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
 }

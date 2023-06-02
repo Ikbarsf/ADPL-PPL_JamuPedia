@@ -69,29 +69,23 @@ class        CustomerListCourseController extends Controller
         }
     }
 
-    public function myCourseDetail($slug)
+    public function CourseDetail($slug)
     {
         try{
             $this->param['getCourse'] = Course::where('slug', $slug)
                                                 ->first(); //getCourse
             $getCourseID = $this->param['getCourse']->id; //getCourseID
-            // $this->param['getCourseModule'] = CourseModule::where('course_id', $getCourseID)
-            //                                                 ->orderBy('ordinal', 'ASC')
-            //                                                 ->get(); //getCourseModule
-            // $this->param['getCourseModuleContent'] = CourseModuleContent::orderBy('course_module_id', 'ASC')
-            //                                                             ->orderBy('ordinal', 'ASC')
-            //                                                             ->get(); //getCourseModuleContent
-            // $this->param['getBenefit'] = CourseBenefit::where('course_id', $getCourseID)
-            //                                             ->orderBy('id', 'ASC')
-            //                                             ->get(); //getBenefit
 
-            return view('customer.pages.my-course.detail', $this->param);
+
+            return view('customer.pages.course.detail', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
         }
     }
+
+
     public function destroy($id)
     {
         try {

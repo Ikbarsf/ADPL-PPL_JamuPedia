@@ -23,6 +23,97 @@
         @livewireStyles
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+		<style>
+.launch {
+  height: 50px;
+}
+.close {
+  font-size: 21px;
+  cursor: pointer;
+}
+.modal-body {
+  height: 450px;
+}
+.nav-tabs {
+  border: none !important;
+}
+.nav-tabs .nav-link.active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #ffffff #ffffff #fff;
+  border-top: 3px solid blue !important;
+}
+.nav-tabs .nav-link {
+  margin-bottom: -1px;
+  border: 1px solid transparent;
+  border-top-left-radius: 0rem;
+  border-top-right-radius: 0rem;
+  border-top: 3px solid #eee;
+  font-size: 20px;
+}
+.nav-tabs .nav-link:hover {
+  border-color: #e9ecef #ffffff #ffffff;
+}
+.nav-tabs {
+  display: table !important;
+  width: 100%;
+}
+.nav-item {
+  display: table-cell;
+}
+.form-control {
+  border-bottom: 1px solid #eee !important;
+  border: none;
+  font-weight: 600;
+}
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #8bbafe;
+  outline: 0;
+  box-shadow: none;
+}
+.inputbox {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.inputbox span {
+  position: absolute;
+  top: 7px;
+  left: 11px;
+  transition: 0.5s;
+}
+.inputbox i {
+  position: absolute;
+  top: 13px;
+  right: 8px;
+  transition: 0.5s;
+  color: #3f51b5;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputbox input:focus ~ span {
+  transform: translateX(-0px) translateY(-15px);
+  font-size: 12px;
+}
+.inputbox input:valid ~ span {
+  transform: translateX(-0px) translateY(-15px);
+  font-size: 12px;
+}
+.pay button {
+  height: 47px;
+  border-radius: 37px;
+}
+
+		</style>
 	</head>
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px" :class="{ 'sidebar-expanded': sidebarExpanded }"
 	x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }"

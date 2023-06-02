@@ -66,7 +66,8 @@ class CustomerTransactionProductController extends Controller
         $my_products = Transaction::where('user_id', Auth::user()->id)
                                     ->where('is_payment', false)->get();
         $is_payment = Transaction::where('user_id', Auth::user()->id)
-                                    ->where('is_payment', true)->latest()->get();
+                                    ->where('is_payment', true)
+                                    ->whereNot('status', 'Selesai')->latest()->get();
         return view('customer.pages.product.keranjang', [
             'my_products' => $my_products,
             'is_payment' => $is_payment

@@ -1,5 +1,5 @@
 <x-authentication-layout>
-    <h1 class="text-3xl text-slate-800 font-bold mt-20 mb-6">{{ __('Create your Account!') }}</h1>
+    <h1 class="text-3xl text-slate-800 font-bold mt-20 mb-6">{{ __('Buat Akun Kamu!') }}</h1>
     <!-- Form -->
     <form method="POST" action="{{ route('register') }}">
         @csrf

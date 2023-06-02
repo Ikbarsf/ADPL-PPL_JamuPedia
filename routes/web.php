@@ -63,9 +63,9 @@ Route::get('/back-admin/user/list-mitra', [AdminUserController::class, 'listMitr
 
 Route::get('/back-customer/course/list-course', [CustomerListCourseController::class, 'index']);
 Route::get('/back-customer/course/paid-course', [CustomerListCourseController::class, 'myCourse']);
-Route::get('/back-customer/my-course/{slug}/persiapan-course', [CustomerListCourseController::class, 'myCourseDetail']);
-Route::get('/back-customer/my-course/{slugCourse}/{slugModule}/{slugContent}', [CustomerListCourseController::class, 'myCourseDetails']);
 Route::post('/back-customer/enroll/enroll-course/{id}', [CustomerEnrollController::class, 'store']);
+Route::get('/back-customer/course/{slug}/persiapan-course', [CustomerListCourseController::class, 'CourseDetail']);
+Route::get('/back-customer/my-course/{slug}/course', [CustomerTransaksiCourseController::class, 'myCourseDetail']);
 Route::get('/back-customer/transaksi/transaksi-course', [CustomerTransaksiCourseController::class, 'index']);
 Route::delete('/back-customer/my-course/{id}/destroy-course', [CustomerEnrollController::class, 'destroy']);
 Route::patch('/back-customer/my-course/bayar', [CustomerTransaksiCourseController::class, 'bayar']);
