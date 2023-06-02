@@ -53,7 +53,10 @@ class AdminCourseController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,
+        
+
+        try {
+            $this->validate($request,
             [
                 'course_name' => 'required|min:4',
                 'harga' => 'required|min:4',
@@ -70,8 +73,6 @@ class AdminCourseController extends Controller
                 'thumbnail_video' => 'Thumbnail Video',
             ],
         );
-
-        try {
             $date = date('H-i-s');
             $random = \Str::random(5);
 
@@ -90,7 +91,7 @@ class AdminCourseController extends Controller
             $course->slug = \Str::slug($request->course_name);
             $course->save();
 
-            return redirect('/back-admin/course/list-course')->withStatus('Berhasil menambah data.');
+            return redirect('/back-admin/course/list-course')->withStatus('Data Berhasil di Simpan');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -116,7 +117,10 @@ class AdminCourseController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request,
+        
+
+        try {
+            $this->validate($request,
             [
                 'course_name' => 'required|min:4',
                 'harga' => 'required|min:4',
@@ -133,8 +137,6 @@ class AdminCourseController extends Controller
                 'thumbnail_video' => 'Thumbnail Video',
             ],
         );
-
-        try {
             $date = date('H-i-s');
             $random = \Str::random(5);
 
@@ -151,7 +153,7 @@ class AdminCourseController extends Controller
             $course->slug = \Str::slug($request->course_name);
             $course->save();
 
-            return redirect('/back-admin/course/list-course')->withStatus('Berhasil memperbarui data.');
+            return redirect('/back-admin/course/list-course')->withStatus('Data Berhasil di Simpan');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

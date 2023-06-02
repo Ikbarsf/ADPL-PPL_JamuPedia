@@ -28,18 +28,18 @@
             </div>
 
             <div>
-                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <x-jet-label for="password" value="{{ __('Kata Sandi') }}" />
                 <x-jet-input id="password" type="password" name="password" required autocomplete="new-password" />
             </div>
 
             <div>
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-jet-label for="password_confirmation" value="{{ __('Konfirmasi Kata Sandi') }}" />
                 <x-jet-input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
         </div>
         <div class="flex items-center justify-end mt-6">
             <x-jet-button>
-                {{ __('Sign Up') }}
+                {{ __('Daftar') }}
             </x-jet-button>                
         </div>
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -60,7 +60,7 @@
     <!-- Footer -->
     <div class="pt-5 mt-6 border-t border-slate-200">
         <div class="text-sm">
-            {{ __('Have an account?') }} <a class="font-medium text-indigo-500 hover:text-indigo-600" href="{{ route('login') }}">{{ __('Sign In') }}</a>
+            {{ __('Sudah Punya Akun?') }} <a class="font-medium text-indigo-500 hover:text-indigo-600" href="{{ route('login') }}">{{ __('Masuk') }}</a>
         </div>
     </div>
 </x-authentication-layout>

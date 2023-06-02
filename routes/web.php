@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerTransactionProductController;
+use App\Http\Controllers\MitraTransactionProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DataFeedController;
@@ -8,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\MitraECommersController;
 use App\Http\Controllers\CustomerEnrollController;
+use App\Http\Controllers\CustomerProductController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\CustomerListCourseController;
 use App\Http\Controllers\CustomerTransaksiCourseController;
@@ -66,6 +69,13 @@ Route::post('/back-customer/enroll/enroll-course/{id}', [CustomerEnrollControlle
 Route::get('/back-customer/transaksi/transaksi-course', [CustomerTransaksiCourseController::class, 'index']);
 Route::delete('/back-customer/my-course/{id}/destroy-course', [CustomerEnrollController::class, 'destroy']);
 Route::patch('/back-customer/my-course/bayar', [CustomerTransaksiCourseController::class, 'bayar']);
+Route::get('/back-customer/product', [CustomerTransactionProductController::class, 'index']);
+Route::post('/back-customer/product/{id}', [CustomerTransactionProductController::class, 'store']);
+Route::patch('/back-customer/product/{id}/update', [CustomerTransactionProductController::class, 'update']);
+Route::get('/back-customer/product/list-product', [CustomerTransactionProductController::class, 'myProduct']);
+Route::get('/back-customer/product/list-history', [CustomerTransactionProductController::class, 'myHistory']);
+Route::get('/back-customer/product/{id}/detail-product', [CustomerTransactionProductController::class, 'detail']);
+
 
 
 
@@ -75,3 +85,12 @@ Route::patch('/back-customer/my-course/bayar', [CustomerTransaksiCourseControlle
 // Route::get('/back-mitra/dashboard', [MitraDashboardController::class, 'index']);
 Route::get('/back-mitra/E-Commers/list-barang', [MitraECommersController::class, 'index']);
 Route::get('/back-mitra/E-Commers/add-barang', [MitraECommersController::class, 'add']);
+Route::get('/back-mitra/E-Commers/list-product', [MitraECommersController::class, 'index']);
+Route::post('/back-admin/E-Commers/{id}/edit-product', [MitraECommersController::class, 'edit']);
+Route::put('/back-admin/E-Commers/{id}/update-product', [MitraECommersController::class, 'update']);
+Route::delete('/back-admin/E-commers/{id}/destroy-product', [MitraECommersController::class, 'destroy']);
+Route::get('/back-mitra/E-Commers/add-product', [MitraECommersController::class, 'add']);
+Route::post('/back-mitra/E-Commers/store-product', [MitraECommersController::class, 'store']);
+Route::get('/back-mitra/product/pesanan', [MitraTransactionProductController::class, 'index']);
+Route::patch('/back-mitra/product/pesanan/{id}/update', [MitraTransactionProductController::class, 'update']);
+Route::get('/back-mitra/product/pesanan/history', [MitraTransactionProductController::class, 'myHistory']);

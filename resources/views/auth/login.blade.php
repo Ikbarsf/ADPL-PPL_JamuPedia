@@ -15,7 +15,7 @@
                 <x-jet-input id="email" type="email" name="email" :value="old('email')" required autofocus />                
             </div>
             <div>
-                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <x-jet-label for="password" value="{{ __('Kata Sandi') }}" />
                 <x-jet-input id="password" type="password" name="password" required autocomplete="current-password" />                
             </div>
         </div>
@@ -28,7 +28,7 @@
                 </div>
             @endif             --}}
             <x-jet-button class="ml-3">
-                {{ __('Sign in') }}
+                {{ __('Masuk') }}
             </x-jet-button>            
         </div>
     </form>
@@ -36,7 +36,7 @@
     <!-- Footer -->
     <div class="pt-5 mt-6 border-t border-slate-200">
         <div class="text-sm">
-            {{ __('Don\'t you have an account?') }} <a class="font-medium text-indigo-500 hover:text-indigo-600" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
+            {{ __('Kamu Tidak Punya Akun?') }} <a class="font-medium text-indigo-500 hover:text-indigo-600" href="{{ route('register') }}">{{ __('Daftar') }}</a>
         </div>
         <!-- Warning -->
         {{-- <div class="mt-5">

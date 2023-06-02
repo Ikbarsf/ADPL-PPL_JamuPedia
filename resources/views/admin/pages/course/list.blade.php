@@ -11,7 +11,7 @@
             <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">Home - Master Data - Course - </span>&nbsp;List Course</h1>
         </div>
         <div class="d-flex align-items-center gap-2 gap-lg-3">
-            <a href="{{url('/back-admin/course/add-course')}}" class="btn btn-sm btn-primary">Tambah Data</a>
+            <a href="{{url('/back-admin/course/add-course')}}" class="btn btn-sm btn-primary">Tambah</a>
         </div>
     </div>
 </div>

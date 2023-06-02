@@ -29,7 +29,7 @@
                 <!-- Logo -->
                 <a href="{{ route('dashboard') }}"> <img src="{{ asset('images/Logo1.png') }}" width="70" height="70" alt="Dashboard"> </a>
             </div>
-        
+
             <!-- Links -->
             <div class="space-y-8">
                 <!-- Pages group -->
@@ -39,7 +39,7 @@
                         <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Pages</span>
                     </h3>
                     <ul class="mt-3">
-        
+
                         <!-- Course -->
                         <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if(in_array(Request::segment(1), ['course'])){{ 'bg-slate-900' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['course']) ? 1 : 0 }} }">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if(in_array(Request::segment(1), ['course'])){{ 'hover:text-slate-200' }}@endif" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
@@ -62,23 +62,23 @@
                             </a>
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                                 <ul class="pl-9 mt-1 @if(!in_array(Request::segment(1), ['/back-admin/course/list-course'])){{ 'hidden' }}@endif" :class="open ? '!block' : 'hidden'">
-                                    
+
                                     @can('customer')
                                     <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('back-customer/course/paid-course')){{ '!text-indigo-500' }}@endif" href="/back-customer/course/paid-course">
-                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Gabung Kelas</span>
+                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Kelas Berbayar</span>
                                         </a>
                                     </li>
                                     @endcan
-                                    
+
                                     @can('admin')
                                     <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('back-admin/course/list-course')){{ '!text-indigo-500' }}@endif" href="/back-admin/course/list-course">
-                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">List Kelas</span>
+                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Kelas Berbayar</span>
                                         </a>
                                     </li>
                                     @endcan
-        
+
                                     @can('customer')
                                     <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('back-customer/course/list-course')){{ '!text-indigo-500' }}@endif" href="/back-customer/course/list-course">
@@ -86,7 +86,7 @@
                                         </a>
                                     </li>
                                     @endcan
-        
+
                                     @can('admin')
                                     <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-admin/course/add-course')){{ '!text-indigo-500' }}@endif" href="/back-admin/course/add-course">
@@ -97,7 +97,7 @@
                                 </ul>
                             </div>
                         </li>
-        
+
                         <!-- Pengguna (User) -->
                         @can('admin')
                         <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if(in_array(Request::segment(1), ['pengguna'])){{ 'bg-slate-900' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['pengguna']) ? 1 : 0 }} }">
@@ -135,7 +135,7 @@
                             </div>
                         </li>
                         @endcan
-        
+
                         <!-- E-Commerce -->
                         {{-- @if(Gate::check('admin') || Gate::check('mitra')) --}}
                         <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if(in_array(Request::segment(1), ['ecommerce'])){{ 'bg-slate-900' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['ecommerce']) ? 1 : 0 }} }">
@@ -159,15 +159,42 @@
                             </a>
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                                 <ul class="pl-9 mt-1 @if(!in_array(Request::segment(1), ['ecommerce'])){{ 'hidden' }}@endif" :class="open ? '!block' : 'hidden'">
+                                    @can('customer')
                                     <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-mitra/E-Commers/list-barang')){{ '!text-indigo-500' }}@endif" href="/back-mitra/E-Commers/list-barang">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-customer/product')){{ '!text-indigo-500' }}@endif" href="{{ url('back-customer/product') }}">
                                             <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Lihat Produk</span>
                                         </a>
                                     </li>
+                                    <li class="mb-1 last:mb-0">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-customer/product')){{ '!text-indigo-500' }}@endif" href="{{ url('back-customer/product/list-product') }}">
+                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Lihat Keranjang</span>
+                                        </a>
+                                    </li>
+                                    <li class="mb-1 last:mb-0">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-customer/product')){{ '!text-indigo-500' }}@endif" href="{{ url('back-customer/product/list-history') }}">
+                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Lihat Riwayat</span>
+                                        </a>
+                                    </li>
+                                    @endcan
                                     @can('mitra')
+                                    <li class="mb-1 last:mb-0">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-mitra/E-Commers/list-product')){{ '!text-indigo-500' }}@endif" href="/back-mitra/E-Commers/list-product">
+                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Lihat Produk</span>
+                                        </a>
+                                    </li>
                                     <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('orders')){{ '!text-indigo-500' }}@endif" href="#0">
                                             <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Tambah Produk</span>
+                                        </a>
+                                    </li>
+                                    <li class="mb-1 last:mb-0">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('orders')){{ '!text-indigo-500' }}@endif" href="{{ url('/back-mitra/product/pesanan') }}">
+                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Pesanan</span>
+                                        </a>
+                                    </li>
+                                    <li class="mb-1 last:mb-0">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('orders')){{ '!text-indigo-500' }}@endif" href="{{ url('/back-mitra/product/pesanan/history') }}">
+                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Riwayat</span>
                                         </a>
                                     </li>
                                     @endcan
@@ -175,7 +202,7 @@
                             </div>
                         </li>
                         {{-- @endif --}}
-        
+
                         <!-- Transaksi-->
                         <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if(in_array(Request::segment(1), ['finance'])){{ 'bg-slate-900' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['finance']) ? 1 : 0 }} }">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if(in_array(Request::segment(1), ['finance'])){{ 'hover:text-slate-200' }}@endif" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
@@ -213,9 +240,9 @@
                         </li>
                     </ul>
                 </div>
-        
+
             </div>
-        
+
             <!-- Expand / collapse button -->
             <div class="pt-3 hidden lg:inline-flex 2xl:hidden justify-end mt-auto">
                 <div class="px-3 py-2">

@@ -57,15 +57,16 @@
                         <th class="text-center">Nama Produk</th>
                         <th class="text-center">Thumbnail</th>
                         <th class="text-center">Harga</th>
-                        <th class="text-center">Kadaluarsa</th>
+                        <th class="text-center">Jumlah pesan</th>
+                        <th class="text-center px-20">Kadaluarsa</th>
                         <th class="text-center">Kategori</th>
                         <th class="text-center">Deskripsi</th>
-                        <th class="text-center">Stok</th>
+                        <th class="text-center">Total</th>
                         <th class="text-center">Opsi</th>
                     </tr>
                 </thead>
                 <tbody class="fw-bold text-gray-600">
-                    @foreach ($getProducts as $item)
+                    @foreach ($transactions as $item)
                     <tr>
                         <td>
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -76,40 +77,42 @@
                             <span class="fw-bolder">{{$loop->iteration}}</span>
                         </td>
                         <td class="text-center">
-                            <span class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{ $item->product_name }}</span>
+                            <span class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{ $item->product->product_name }}</span>
                         </td>
                         <td class="text-center min-w-100px">
-                            <span class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-60px" style="background-image:url('{{asset('image/upload/course/thumbnail')}}/{{$item->thumbnail_image}}')">
+                            <span class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-60px" style="background-image:url('{{asset('image/upload/course/thumbnail')}}/{{$item->product->thumbnail_image}}')">
                             </span>
                         </td>
                         <td class="text-center">
-                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">@currency($item->harga)</p>
+                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">@currency($item->product->harga)</p>
                         </td>
                         <td class="text-center">
-                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{ $item->expired_date }}</p>
+                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{ $item->jumlah_pesanan }}</p>
                         </td>
                         <td class="text-center">
-                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{ $item->category_name }}</p>
+                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{ $item->product->expired_date }}</p>
                         </td>
                         <td class="text-center">
-                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{ $item->description }}</p>
+                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{ $item->product->category->category_name }}</p>
                         </td>
                         <td class="text-center">
-                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{ $item->quantity }}</p>
+                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">{{ $item->product->description }}</p>
                         </td>
                         <td class="text-center">
+                            <p class="fw-bolder ms-3" data-kt-ecommerce-product-filter="category_name">@currency($item->product->harga*$item->jumlah_pesanan)</p>
+                        </td>
+                        <td class="text-center px-20">
                             <div class="d-flex justify-content-center menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" >
                                 <div class="menu-item px-3">
-                                    <form action="{{url('/back-admin/E-Commers/'.$item->id.'/edit-product')}}" method="POST" class="inline">
+                                    <form action="{{url('/back-mitra/product/pesanan/'.$item->id.'/update')}}" method="POST" class="d-flex">
+                                        @method('patch')
                                         @csrf
-                                        <button type="submit" class="btn btn-warning w-100 px-3 fs-7">Edit</button>
-                                    </form>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <form action="{{ url('/back-admin/E-commers/'.$item->id.'/destroy-product') }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger w-100 px-3 fs-7" onclick="return confirm('Hapus Data ?')">Hapus</button>
+                                        <select name="status" id="status" class="rounded mr-2">
+                                            <option value="Diproses" {{ $item->status == 'Diproses' ? 'selected':'' }}>Diproses</option>
+                                            <option value="Dikirim" {{ $item->status == 'Dikirim' ? 'selected':'' }}>Dikirim</option>
+                                            <option value="Selesai" {{ $item->status == 'Selesai' ? 'selected':'' }}>Selesai</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-warning w-100 px-3 fs-7">Ok</button>
                                     </form>
                                 </div>
                             </div>

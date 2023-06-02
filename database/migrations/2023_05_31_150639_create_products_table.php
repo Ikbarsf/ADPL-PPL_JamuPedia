@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 return new class extends Migration
 {
     /**
@@ -19,12 +17,13 @@ return new class extends Migration
             $table->text('description');
             $table->integer('quantity');
             $table->string('harga');
+            $table->date('expired_date');
             $table->string('thumbnail_image');
             $table->integer('category_id', false, true);
             $table->integer('mitra_id');
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('course_categories')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('category_id')->references('id')->on('product_categories')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

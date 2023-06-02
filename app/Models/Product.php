@@ -12,7 +12,14 @@ class Product extends Model
     use HasFactory, HasRoles;
     protected $table = 'products';
     protected $primaryKey = 'id';
-    // public function productCategory(){
-    //     return $this->hasMany(ProductCategory::class);
-    // }
+
+    public function category() {
+        return $this->belongsTo(ProductCategory::class); // don't forget to add your full namespace
+    }
+    public function transaction(){
+        return $this->hasMany(Transaction::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
