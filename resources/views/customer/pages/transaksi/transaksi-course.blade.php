@@ -43,14 +43,14 @@
                                         <div class="d-flex justify-content-between align-items-start flex-wrap">
                                             <div class="d-flex flex-column w-75">
                                                 <div class="d-flex align-items-center mb-2">
-                                                    <a href="{{url('/back-course/my-course/'.$item->slug).'/persiapan-course'}}" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$item->course_name}}</a>
+                                                    <a href="{{url('/back-customer/course/'.$item->slug.'/persiapan-course')}}" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$item->course_name}}</a>
                                                 </div>
                                                 <div class="d-flex align-items-center mb-2">
-                                                    <a href="{{url('/back-course/my-course/'.$item->slug).'/persiapan-course'}}" class="text-gray-600 text-hover-primary fs-2 fw-bolder me-1">Rp.{{$item->harga}}</a>
+                                                    <a href="{{url('/back-customer/course/'.$item->slug.'/persiapan-course')}}" class="text-gray-600 text-hover-primary fs-2 fw-bolder me-1">Rp.{{$item->harga}}</a>
                                                 </div>
                                             </div>
                                             <div class="d-flex my-4">
-                                                <a href="{{url('/back-customer/my-course/'.$item->slug).'/persiapan-course'}}" class="btn btn-sm btn-primary me-2">Lihat Detail</a>
+                                                <a href="{{url('/back-customer/course/'.$item->slug.'/persiapan-course')}}" class="btn btn-sm btn-primary me-2">Lihat Detail</a>
                                             </div>
                                         </div>
                                     </div>
