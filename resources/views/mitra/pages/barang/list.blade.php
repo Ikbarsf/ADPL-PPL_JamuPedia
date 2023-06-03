@@ -99,14 +99,11 @@
                         </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" >
-                                <div class="menu-item px-3">
-                                    <form action="{{url('/back-admin/E-Commers/'.$item->id.'/edit-product')}}" method="POST" class="inline">
-                                        @csrf
-                                        <button type="submit" class="btn btn-warning w-100 px-3 fs-7">Edit</button>
-                                    </form>
+                                <div class="menu-item px-3 mt-3">
+                                    <a href="{{url('/back-mitra/E-Commers/'.$item->id.'/edit-product')}}" class="inline btn btn-warning w-100 px-3 fs-7">Edit</a>
                                 </div>
                                 <div class="menu-item px-3">
-                                    <form action="{{ url('/back-admin/E-commers/'.$item->id.'/destroy-product') }}" method="POST" class="inline">
+                                    <form action="{{ url('/back-mitra/E-Commers/'.$item->id.'/destroy-product') }}" method="POST" class="inline">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger w-100 px-3 fs-7" onclick="return confirm('Hapus Data ?')">Hapus</button>

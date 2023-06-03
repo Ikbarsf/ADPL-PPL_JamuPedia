@@ -102,20 +102,19 @@ class MitraECommersController extends Controller
     }
 
     public function update(Request $request, $id){
-        $this->validate($request,
-            [
-                'product_name' => 'required|unique:products',
-                'harga' => 'required',
-                'quantity' => 'required',
-                'product_category_id' => 'required',
-                'description' => 'required',
-            ],
-            [
-                'required' => ':attribute harus diisi.',
-            ],
-        );
-        // dd($request);
         try {
+            $this->validate($request,
+                [
+                    'product_name' => 'required',
+                    'harga' => 'required',
+                    'quantity' => 'required',
+                    'product_category_id' => 'required',
+                    'description' => 'required',
+                ],
+                [
+                    'required' => ':attribute harus diisi.',
+                ],
+            );
             $date = date('H-i-s');
             $random = \Str::random(5);
 

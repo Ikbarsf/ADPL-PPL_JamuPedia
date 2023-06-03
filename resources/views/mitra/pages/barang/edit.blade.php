@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div id="kt_account_settings_profile_details">
-                <form id="kt_account_profile_details_form" class="form" method="POST" action="{{url('/back-admin/E-Commers/'.$getProductDetail->id.'/update-product')}}" enctype="multipart/form-data">
+                <form id="kt_account_profile_details_form" class="form" method="POST" action="{{url('/back-mitra/E-Commers/'.$getProductDetail->id.'/update-product')}}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="card-body border-top p-9">
@@ -91,7 +91,7 @@
                         <div class="row mb-6">
                             <label class="col-lg-4 col-form-label required fw-bold fs-6">Deskripsi</label>
                             <div class="col-lg-8 fv-row">
-                                <textarea name="description" class="harga form-control form-control-lg form-control-solid mb-3 mb-lg-0 @error('description') is-invalid @enderror" placeholder="Deskrispsi" value="{{old('description', $getProductDetail->description)}}"></textarea>
+                                <textarea name="description" class="harga form-control form-control-lg form-control-solid mb-3 mb-lg-0 @error('description') is-invalid @enderror" placeholder="Deskrispsi">{{old('description', $getProductDetail->description)}}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>&nbsp; &nbsp; &nbsp;{{ $message }}</strong>
@@ -122,8 +122,8 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                        <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
-                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
+                        <button type="reset" class="btn btn-light btn-active-light-primary me-2">Batal</button>
+                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Simpan</button>
                     </div>
                 </form>
             </div>

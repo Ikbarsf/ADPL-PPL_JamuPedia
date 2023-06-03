@@ -83,14 +83,14 @@ Route::get('/back-customer/product/{id}/detail-product', [CustomerTransactionPro
 
 // Mitra
 // Route::get('/back-mitra/dashboard', [MitraDashboardController::class, 'index']);
-Route::get('/back-mitra/E-Commers/list-barang', [MitraECommersController::class, 'index']);
-Route::get('/back-mitra/E-Commers/add-barang', [MitraECommersController::class, 'add']);
-Route::get('/back-mitra/E-Commers/list-product', [MitraECommersController::class, 'index']);
-Route::post('/back-admin/E-Commers/{id}/edit-product', [MitraECommersController::class, 'edit']);
-Route::put('/back-admin/E-Commers/{id}/update-product', [MitraECommersController::class, 'update']);
-Route::delete('/back-admin/E-commers/{id}/destroy-product', [MitraECommersController::class, 'destroy']);
-Route::get('/back-mitra/E-Commers/add-product', [MitraECommersController::class, 'add']);
+// Route::get('/back-mitra/E-Commers/list-barang', [MitraECommersController::class, 'index']); 
+// Route::get('/back-mitra/E-Commers/add-barang', [MitraECommersController::class, 'add']);
+Route::get('/back-mitra/E-Commers/list-product', [MitraECommersController::class, 'index']); //
+Route::get('/back-mitra/E-Commers/{id}/edit-product', [MitraECommersController::class, 'edit']);  //
+Route::put('/back-mitra/E-Commers/{id}/update-product', [MitraECommersController::class, 'update']);
+Route::delete('/back-mitra/E-Commers/{id}/destroy-product', [MitraECommersController::class, 'destroy']);
+Route::get('/back-mitra/E-Commers/add-product', [MitraECommersController::class, 'add']); //
 Route::post('/back-mitra/E-Commers/store-product', [MitraECommersController::class, 'store']);
-Route::get('/back-mitra/product/pesanan', [MitraTransactionProductController::class, 'index']);
-Route::patch('/back-mitra/product/pesanan/{id}/update', [MitraTransactionProductController::class, 'update']);
-Route::get('/back-mitra/product/pesanan/history', [MitraTransactionProductController::class, 'myHistory']);
+Route::get('/back-mitra/product/pesanan', [MitraTransactionProductController::class, 'index']); //
+Route::patch('/back-mitra/product/pesanan/{id}/update', [MitraTransactionProductController::class, 'update']); //
+Route::get('/back-mitra/product/pesanan/history', [MitraTransactionProductController::class, 'myHistory']); //

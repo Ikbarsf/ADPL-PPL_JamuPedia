@@ -17,12 +17,14 @@ class MitraTransactionProductController extends Controller
             'transactions' =>$transactions
         ]);
     }
+
     public function update(Request $request, $id)
     {
         $transaction = Transaction::find($id);
         $transaction->update(['status' => $request->status]);
         return redirect()->back()->withStatus('Berhasil mengubah status pesanan');
     }
+    
     public function myHistory(){
         $product_id = array();
         foreach(auth()->user()->product as $i){
