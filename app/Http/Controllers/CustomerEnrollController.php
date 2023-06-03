@@ -38,7 +38,7 @@ class CustomerEnrollController extends Controller
         try {
             Enroll::where('id', $id)->delete();
             // Enroll::query()->find($id)->delete();
-            return redirect('/back-customer/course/list-course')->withStatus('Berhasil menghapus data.');
+            return redirect('/back-customer/transaksi/transaksi-course')->withStatus('Berhasil menghapus data.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

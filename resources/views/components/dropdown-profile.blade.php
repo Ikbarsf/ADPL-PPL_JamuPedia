@@ -48,7 +48,7 @@
                         @focus="open = true"
                         @focusout="open = false"
                     >
-                        {{ __('Sign Out') }}
+                        {{ __('Log Out') }}
                     </a>
                 </form>                                
             </li>

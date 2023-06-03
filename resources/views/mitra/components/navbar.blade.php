@@ -35,7 +35,7 @@
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Dashboard Admin</span>
+                                        <span class="menu-title">Dashboard Mitra</span>
                                     </a>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="fw-bolder d-flex align-items-center fs-5">{{\Auth::user()->name}}
-                                    <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Admin</span></div>
+                                    <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Mitra</span></div>
                                     <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{\Auth::user()->email}}</a>
                                 </div>
                             </div>

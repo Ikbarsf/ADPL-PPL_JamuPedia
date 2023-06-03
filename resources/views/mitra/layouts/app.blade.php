@@ -41,7 +41,7 @@
                 @include('components.app.sidebar') <!--Container-->
 				{{-- <x-app.sidebar /> --}}
 				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-					@include('admin.components.navbar') <!--Navbar-->
+					@include('mitra.components.navbar') <!--Navbar-->
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                         @yield('toolbar') <!--Toolbar-->
 						<div class="container">

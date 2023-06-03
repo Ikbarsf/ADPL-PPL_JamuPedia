@@ -1,5 +1,15 @@
 @extends('customer.layouts.app')
 
+@section('toolbar')
+<div class="toolbar" id="kt_toolbar">
+    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+            <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">Home - E-Commerce - </span>&nbsp;Produk</h1>
+        </div>
+    </div>
+</div>
+@endsection
+
 @section('content')
     <section style="background-color: #eee;">
         <div class="container py-5">
@@ -25,10 +35,9 @@
                                     <form action="{{ url('back-customer/product/' . $item->id) }}" method="post"
                                         class="d-flex">
                                         @csrf
-                                        <a href='{{ url('/back-customer/product/' . $item->id . '/detail-product') }}'
-                                            class="btn btn-success mt-10">Detail</a>
-                                        <div class="d-flex ml-10">
-                                            <div class="mt-10">
+                                        <div class="d-flex ml-10 ">
+                                            <a href='{{ url('/back-customer/product/' . $item->id . '/detail-product') }}' class="btn btn-success mt-10 ml-4">Detail</a>
+                                            <div class="mt-10 ml-5">
                                                 <input type="number" id="jumlah_pesanan" name="jumlah_pesanan"
                                                     value="1" min="1" required class="w-20 text-">
                                             </div>

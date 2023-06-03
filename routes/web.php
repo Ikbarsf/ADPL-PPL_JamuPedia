@@ -67,7 +67,7 @@ Route::post('/back-customer/enroll/enroll-course/{id}', [CustomerEnrollControlle
 Route::get('/back-customer/course/{slug}/persiapan-course', [CustomerListCourseController::class, 'CourseDetail']);
 Route::get('/back-customer/my-course/{slug}/course', [CustomerTransaksiCourseController::class, 'myCourseDetail']);
 Route::get('/back-customer/transaksi/transaksi-course', [CustomerTransaksiCourseController::class, 'index']);
-Route::delete('/back-customer/my-course/{id}/destroy-course', [CustomerEnrollController::class, 'destroy']);
+Route::delete('/back-customer/transaksi/{id}/destroy-course', [CustomerEnrollController::class, 'destroy']);
 Route::patch('/back-customer/my-course/bayar', [CustomerTransaksiCourseController::class, 'bayar']);
 Route::get('/back-customer/product', [CustomerTransactionProductController::class, 'index']);
 Route::post('/back-customer/product/{id}', [CustomerTransactionProductController::class, 'store']);
