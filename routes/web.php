@@ -8,6 +8,7 @@ use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminCourseController;
+use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\MitraECommersController;
 use App\Http\Controllers\CustomerEnrollController;
 use App\Http\Controllers\CustomerProductController;
@@ -52,7 +53,7 @@ Route::post('/back-admin/course/{id}/edit-course', [AdminCourseController::class
 Route::put('/back-admin/course/{id}/update-course', [AdminCourseController::class, 'update']);
 Route::delete('/back-admin/course/{id}/destroy-course', [AdminCourseController::class, 'destroy']);
 Route::get('/back-admin/course/detail-peserta/{id}', [AdminCourseController::class, 'cek_peserta']);
-
+Route::get('/back-admin/product/list-product', [AdminProductController::class, 'index']);
 Route::get('/back-admin/user/list-customer', [AdminUserController::class, 'listCustomer']);
 Route::get('/back-admin/user/list-mitra', [AdminUserController::class, 'listMitra']);
 

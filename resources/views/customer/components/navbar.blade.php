@@ -31,7 +31,7 @@
                             </span>
                             <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
                                 <div class="menu-item">
-                                    <a class="menu-link active py-3" href="../../demo1/dist/index.html">
+                                    <a class="menu-link active py-3" href="{{ route('dashboard') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>

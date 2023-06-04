@@ -179,15 +179,23 @@
                                             <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Lihat Produk</span>
                                         </a>
                                     </li>
+                                    @endcan
+                                    @can('admin')
+                                    <li class="mb-1 last:mb-0">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-admin/product/list-product')){{ '!text-indigo-500' }}@endif" href="/back-admin/product/list-product">
+                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Lihat Produk</span>
+                                        </a>
+                                    </li>
+                                    @endcan
                                     @can('mitra')
                                     <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-mitra/E-Commers/add-product')){{ '!text-indigo-500' }}@endif" href="/back-mitra/E-Commers/add-product">
                                             <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Tambah Produk</span>
                                         </a>
                                     </li>
-                                    @endcan                                
+                                    {{-- @endcan                                 --}}
                                     <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('orders')){{ '!text-indigo-500' }}@endif" href="{{ url('/back-mitra/product/pesanan/history') }}">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if(Route::is('/back-mitra/product/pesanan/history')){{ '!text-indigo-500' }}@endif" href="{{ url('/back-mitra/product/pesanan/history') }}">
                                             <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Riwayat</span>
                                         </a>
                                     </li>
@@ -198,6 +206,7 @@
                         {{-- @endif --}}
 
                         <!-- Transaksi-->
+                        @if(Gate::check('customer') || Gate::check('mitra'))
                         <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if(in_array(Request::segment(1), ['finance'])){{ 'bg-slate-900' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['finance']) ? 1 : 0 }} }">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if(in_array(Request::segment(1), ['finance'])){{ 'hover:text-slate-200' }}@endif" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                                 <div class="flex items-center justify-between">
@@ -243,6 +252,7 @@
                                 </ul>
                             </div>
                         </li>
+                        @endif
                     </ul>
                 </div>
 
