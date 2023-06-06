@@ -12,7 +12,9 @@
 
         <!-- Styles -->
         @livewireStyles
-
+        <link href="{{asset('vendor/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('vendor/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('vendor/plugins/custom/prismjs/prismjs.bundle.css')}}" rel="stylesheet" type="text/css" />
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -35,7 +37,7 @@
         <div class="flex h-screen overflow-hidden">
 
             {{-- <x-app.sidebar /> --}}
-            @include('components.app.sidebar')
+            @include('components.app.sidebar2')
 
             <!-- Content area -->
             <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden @if($attributes['background']){{ $attributes['background'] }}@endif" x-ref="contentarea">
@@ -51,5 +53,9 @@
         </div>
 
         @livewireScripts
+        <!--Global-->
+		<script src="{{asset('vendor/plugins/global/plugins.bundle.js')}}"></script>
+		<script src="{{asset('vendor/js/scripts.bundle.js')}}"></script>
+		<script src="{{asset('vendor/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
     </body>
 </html>

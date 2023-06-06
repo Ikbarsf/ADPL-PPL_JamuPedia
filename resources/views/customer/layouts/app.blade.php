@@ -129,7 +129,7 @@ input::-webkit-inner-spin-button {
 		<div class="d-flex flex-column flex-root">
 			<div class="page d-flex flex-row flex-column-fluid"> <!--Sidebar-->
                 {{-- @include('admin.components.sidebar') <!--Container--> --}}
-                @include('components.app.sidebar') <!--Container-->
+                @include('components.app.sidebar2') <!--Container-->
 				{{-- <x-app.sidebar /> --}}
 				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
 					@include('customer.components.navbar') <!--Navbar-->
