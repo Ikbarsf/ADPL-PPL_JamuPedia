@@ -16,7 +16,7 @@
             <div class="row justify-content-center">
                 @foreach ($getProducts as $item)
                     <div class="col-md-8 col-lg-6 col-xl-4">
-                        <div class="card text-black">
+                        <div class="card text-black mb-10">
                             <img src="{{ asset('image/upload/course/thumbnail') }}/{{ $item->thumbnail_image }}"
                                 class="card-img-top h-80" alt="{{ $item->product_name }}" />
                             <div class="card-body">
