@@ -24,14 +24,19 @@
               <div class="text-center fw-bold mb-10">
                 <h1 class="card-title text-2xl">{{ $item->product->product_name }}</h1>
               </div>
-              <div>
-              </div>
-              <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                <span>@currency($item->product->harga*$item->jumlah_pesanan)</span>
-              </div>
               <div class="d-flex justify-content-between total font-weight-bold mt-4">
                 <span>Jumlah pesanan: {{ $item->jumlah_pesanan }}</span>
               </div>
+              <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                <span>Harga Barang: @currency($item->product->harga*$item->jumlah_pesanan)</span>
+              </div>
+              <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                <span>Biaya Ongkir: Rp.5.000 </span>
+              </div>
+              <div class="d-flex justify-content-between total font-bold mt-4">
+                <span>Harga Total: @currency(($item->product->harga*$item->jumlah_pesanan)+5000)</span>
+              </div>
+
             <div>
               <form action="{{ url('/back-customer/product/'.$item->id.'/update') }}" method="post">
                 @method('patch')
@@ -121,13 +126,17 @@
               <div class="text-center fw-bold mb-10">
                 <h1 class="card-title text-2xl">{{ $item->product->product_name }}</h1>
               </div>
-              <div>
-              </div>
-              <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                <span>@currency($item->product->harga*$item->jumlah_pesanan)</span>
-              </div>
               <div class="d-flex justify-content-between total font-weight-bold mt-4">
                 <span>Jumlah pesanan: {{ $item->jumlah_pesanan }}</span>
+              </div>
+              <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                <span>Harga Barang: @currency($item->product->harga*$item->jumlah_pesanan)</span>
+              </div>
+              <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                <span>Biaya Ongkir: Rp.5.000 </span>
+              </div>
+              <div class="d-flex justify-content-between total font-bold mt-4">
+                <span>Harga Total: @currency(($item->product->harga*$item->jumlah_pesanan)+5000)</span>
               </div>
             <div>
                 <a class="btn btn-success mt-10">Detail</a>
